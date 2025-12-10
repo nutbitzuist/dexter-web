@@ -1,0 +1,12 @@
+node_modules
+.git
+.env
+.DS_Store
+web
+legacy
+test
+*.test.ts
+.bun
+dist
+build
+coverage
