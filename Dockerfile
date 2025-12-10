@@ -1,21 +1,25 @@
-FROM oven/bun:1
+FROM node:20-slim
 
 WORKDIR /app
 
-# Copy dependency files
+# Install Bun
+RUN npm install -g bun
+
+# Copy package files
 COPY package.json bun.lock ./
 
-# Install dependencies (frozen lockfile for speed)
-RUN bun install --frozen-lockfile
+# Install dependencies (PRODUCTION ONLY)
+# This will skip ink, react, and other heavy CLI deps
+ENV NODE_ENV=production
+RUN bun install --production
 
-# Copy source code (respecting .dockerignore)
+# Copy source
 COPY src ./src
 COPY tsconfig.json ./
 
-# Build explicit (optional with Bun but good for checking)
-# RUN bun run build 
-
+# Environment
 ENV PORT=3000
 EXPOSE 3000
 
+# Start
 CMD ["bun", "run", "src/server.ts"]
