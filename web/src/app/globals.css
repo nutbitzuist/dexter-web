@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  
+  --color-brand: #3b82f6; 
+  --color-brand-foreground: #ffffff;
+  
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@layer base {
+  body {
+    @apply bg-zinc-950 text-zinc-100 min-h-screen selection:bg-blue-500/30 selection:text-blue-200;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-zinc-900/60 backdrop-blur-xl border border-white/5;
+  }
+  
+  .glass-card {
+    @apply bg-zinc-900/40 backdrop-blur-md border border-white/10 shadow-xl;
+  }
+}

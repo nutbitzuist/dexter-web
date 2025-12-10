@@ -1,0 +1,12 @@
+[phases.setup]
+nixPkgs = ["curl", "bash"]
+
+[phases.install]
+cmds = [
+  "curl -fsSL https://bun.sh/install | bash",
+  "export PATH=$HOME/.bun/bin:$PATH",
+  "$HOME/.bun/bin/bun install"
+]
+
+[start]
+cmd = "$HOME/.bun/bin/bun run src/server.ts"
